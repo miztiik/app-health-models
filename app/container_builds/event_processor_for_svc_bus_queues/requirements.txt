@@ -1,0 +1,26 @@
+Flask
+gunicorn
+
+azure-functions
+azure-identity
+azure-storage-blob
+azure-servicebus
+azure-cosmos
+
+azure-monitor-opentelemetry
+azure-core-tracing-opentelemetry
+azure-monitor-opentelemetry-exporter
+azure-monitor-ingestion
+
+
+# Async
+asyncio
+aiohttp
+
+# Mostly Unused
+azure-storage-queue
+azure-appconfiguration
+azure-eventhub
+azure-eventhub-checkpointstoreblob
+azure-eventhub-checkpointstoreblob-aio
+

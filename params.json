@@ -1,0 +1,123 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "deploymentParams": {
+      "value": {
+        "backup_regions": [
+          "switzerlandnorth",
+          "northeurope",
+          "eastus"
+        ],
+        "version": "2024-04-13",
+        "enable_diagnostics": true,
+        "location": "eastus",
+        "loc_short_code": "us",
+        "global_uniqueness": "002",
+        "enterprise_name": "Miztiik_Enterprises",
+        "enterprise_name_suffix": "app_model",
+        "sub_deploymnet_prefix": "Miztiik_Verse"
+      }
+    },
+    "identity_params": {
+      "value": {
+        "name_prefix": "uami"
+      }
+    },
+    "key_vault_params": {
+      "value": {
+        "name_prefix": "secrets"
+      }
+    },
+    "sa_params": {
+      "value": {
+        "name_prefix": "warehouse",
+        "misc_sa_name_prefix": "kuppai",
+        "blob_name_prefix": "store-events"
+      }
+    },
+    "cosmosdb_params": {
+      "value": {
+        "name_prefix": "store-backend"
+      }
+    },
+    "vnet_params": {
+      "value": {
+        "name_prefix": "data_gen_swarm",
+        "nat_gateway": false
+      }
+    },
+    "vm_params": {
+      "value": {
+        "name_prefix": "m-web",
+        "vm_size": "Standard_DS2_v2",
+        "admin_username": "miztiik",
+        "admin_password": {
+          "secure_string": "YOUR-ADMIN-PASSWRD-GOES-HERE-1NSTEAD-OF-THIS-T3xT!"
+        },
+        "auth_type": "password",
+        "public_ip_allocation_method": "Static",
+        "public_ip_sku": "Standard",
+        "is_ubuntu": true,
+        "is_windows": false,
+        "is_linux": true
+      }
+    },
+    "dce_params": {
+      "value": {
+        "name_prefix": "data-sink"
+      }
+    },
+    "laws_params": {
+      "value": {
+        "name_prefix": "lumber-yard",
+        "store_events_custom_tbl_name": "storeEvents",
+        "automationEventsCustomTableName": "miztiikAutomationEvents",
+        "managedRunCmdCustomTableName": "miztiikRunCmdEvents"
+      }
+    },
+    "svc_bus_params": {
+      "value": {
+        "name_prefix": "store-events",
+        "serviceBusNamePrefix": "warehouse",
+        "serviceBusQueueName": "store-events",
+        "serviceBusTopicName": "store-events",
+        "serviceBusSubscriptionName": "store-events"
+      }
+    },
+    "fn_params": {
+      "value": {
+        "name_prefix": "store-backend"
+      }
+    },
+    "container_app_params": {
+      "value": {
+        "name_prefix": "ops"
+      }
+    },
+    "acr_params": {
+      "value": {
+        "name_prefix": "containeryard"
+      }
+    },
+    "appln_gw_params": {
+      "value": {
+        "name_prefix": "appgw",
+        "gw_subnet": "gw_subnet"
+      }
+    },
+    "brand_tags": {
+      "value": {
+        "owner": "mystique",
+        "automation_by": "mystique_automation",
+        "github_profile": "https://github.com/miztiik",
+        "about_me": "https://github.com/miztiik/about-me",
+        "udemy_profile": "https://www.udemy.com/user/n-kumar",
+        "skill_profile": "https://www.skillshare.com/r/profile/Kumar/407603333",
+        "buy_me_a_coffee": "https://ko-fi.com/miztiik",
+        "project": "app-health-models",
+        "github_repo_url": "https://github.com/miztiik/app-health-models"
+      }
+    }
+  }
+}

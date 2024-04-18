@@ -1,0 +1,29 @@
+<policies>
+    <inbound>
+        <base />
+        <set-backend-service id="apim-generated-policy" backend-id="__BACKEND-ID__" />
+        <rate-limit-by-key calls="10" renewal-period="60" counter-key="@(context.Request.IpAddress)" increment-condition="@(context.Response.StatusCode == 200)" remaining-calls-variable-name="remainingCallsPerIP" />
+        <set-header name="miztiik-automation-apim-inserted" exists-action="override">
+            <value>yes</value>
+        </set-header>
+        <set-variable name="IsMobile" value="@(context.Request.Headers.GetValueOrDefault("User-Agent","").Contains("iPad") || context.Request.Headers.GetValueOrDefault("User-Agent","").Contains("iPhone"))" />
+<!-- <set-backend-service base-url="{storeEventsProducerBackendUrl}" backend-id="{storeEventsProducerBackendId}" /> -->
+</inbound>
+<backend>
+        <limit-concurrency key="@(context.Request.IpAddress)" max-count="3">
+            <forward-request timeout="120" />
+        </limit-concurrency>
+<base />
+</backend>
+<outbound>
+<base />
+        <emit-metric name="miztiik_store_events" value="1" namespace="miztiik-api-metrics">
+            <dimension name="event_count" value="@(context.Response.Body.As<JObject>(preserveContent: true)["resp"]["tot_msgs"].ToString())" />
+            <dimension name="event_gen_duration" value="@(context.Response.Body.As<JObject>(preserveContent: true)["resp"]["event_gen_duration"].ToString())" />
+        </emit-metric> 
+
+</outbound>
+<on-error>
+<base />
+</on-error>
+</policies>
