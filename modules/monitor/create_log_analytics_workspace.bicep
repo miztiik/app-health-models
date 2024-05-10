@@ -1,6 +1,6 @@
 // SET MODULE DATE
 param module_metadata object = {
-  module_last_updated: '2024-04-13'
+  module_last_updated: '2024-04-22'
   owner: 'miztiik@github'
 }
 
@@ -25,7 +25,7 @@ resource r_laws 'Microsoft.OperationalInsights/workspaces@2022-10-01' = {
       name: 'PerGB2018'
     }
     workspaceCapping: {
-      dailyQuotaGb: 10
+      dailyQuotaGb: 20
     }
     publicNetworkAccessForIngestion: 'Enabled'
     publicNetworkAccessForQuery: 'Enabled'

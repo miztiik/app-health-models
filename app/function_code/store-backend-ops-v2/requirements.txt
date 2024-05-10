@@ -23,3 +23,7 @@ azure-appconfiguration
 azure-eventhub
 azure-eventhub-checkpointstoreblob
 azure-eventhub-checkpointstoreblob-aio
+
+
+# Non Azure
+loguru
