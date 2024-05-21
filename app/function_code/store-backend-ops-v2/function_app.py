@@ -25,10 +25,12 @@ from azure.monitor.opentelemetry.exporter import AzureMonitorTraceExporter
 
 app = func.FunctionApp()
 
+os.environ["OTEL_TRACES_SAMPLER_ARG"] = str(0.2)
+
 
 class GlobalArgs:
     OWNER = "Mystique"
-    VERSION = "2024-01-04"
+    VERSION = "2024-05-21"
 
 
 def configure_tracer(svc_name):

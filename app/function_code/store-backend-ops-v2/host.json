@@ -5,6 +5,10 @@
     "id": "Microsoft.Azure.Functions.ExtensionBundle",
     "version": "[3.*, 4.0.0)"
   },
+  "aggregator": {
+    "batchSize": 1000,
+    "flushTimeout": "00:00:15"
+  },
   "extensions": {
     "http": {
       "routePrefix": "",

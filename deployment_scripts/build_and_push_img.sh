@@ -17,6 +17,9 @@ export IMG_NAME="event-processor-for-svc-bus-q"
 # Login to Azure Container Registry
 az acr login --name ${ACR_NAME}
 
+# Disable Anonymous Docker Pull
+az acr update --name ${ACR_NAME} --anonymous-pull-enabled false
+
 ## Build the image
 docker build -t ${IMG_NAME} .
 

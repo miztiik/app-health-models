@@ -71,16 +71,15 @@ module r_alert_action_grp 'modules/monitor/create_alert_action_grp.bicep' = {
 }
 
 @description('Create Key Vault')
-module r_kv 'modules/security/create_key_vault.bicep' =
-  if (create_kv) {
-    name: '${deploymentParams.enterprise_name_suffix}_${deploymentParams.loc_short_code}_${deploymentParams.global_uniqueness}_kv'
-    params: {
-      deploymentParams: deploymentParams
-      key_vault_params: key_vault_params
-      tags: tags
-      uami_name_akane: r_uami.outputs.uami_name_func
-    }
+module r_kv 'modules/security/create_key_vault.bicep' = if (create_kv) {
+  name: '${deploymentParams.enterprise_name_suffix}_${deploymentParams.loc_short_code}_${deploymentParams.global_uniqueness}_kv'
+  params: {
+    deploymentParams: deploymentParams
+    key_vault_params: key_vault_params
+    tags: tags
+    uami_name_akane: r_uami.outputs.uami_name_func
   }
+}
 
 @description('Create Cosmos DB')
 module r_cosmosdb 'modules/database/create_cosmos.bicep' = {
@@ -187,7 +186,7 @@ module r_avl_test_for_api 'modules/monitor/create_availability_tests.bicep' = {
     deploymentParams: deploymentParams
     r_app_insights_name: r_fn_app.outputs.r_app_insights_name
     avl_tst_name: 'at_api'
-    target_url: '${r_apim_svc.outputs.producer_api_url}?count=7'
+    target_url: '${r_apim_svc.outputs.producer_api_url}?count=2'
   }
 }
 

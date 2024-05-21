@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, render_template, make_response
+from flask import Flask, request, jsonify, render_template, make_response
 
 from store_events_producer import evnt_producer
 
@@ -35,19 +35,13 @@ def index():
             current_date=current_date,
         )
     )
-    _resp.headers["Cache-Control"] = "no-cache, no-store, must-revalidate"
-    _resp.headers["X-Response-Tag"] = (
-        f"{os.getenv('APP_ROLE')} on {hostname} at {current_date}"
-    )
-    _resp.headers["X-Miztiik-Automation"] = "True"
-    _resp.headers["X-Brand-Tag"] = "Empowering Innovations & Equitable Growth"
     return _resp
 
 
 @app.route("/event-producer", methods=["GET"])
 def event_producer():
     resp_data = dict()
-    events = evnt_producer(event_cnt=5)
+    events = evnt_producer(event_cnt=3)
     # resp_data["IDENTITY_ENDPOINT"] = os.getenv('IDENTITY_ENDPOINT')
     # resp_data["IDENTITY_HEADER"] = os.getenv('IDENTITY_HEADER')
 
@@ -60,6 +54,18 @@ def event_consumer():
     resp_data = dict()
     resp_data = read_from_svc_bus_q()
     return jsonify(resp_data)
+
+
+@app.after_request
+def add_custom_headers(response):
+    response.headers["remote_addr"] = request.remote_addr
+    response.headers["Cache-Control"] = "no-cache, no-store, must-revalidate"
+    response.headers["X-Response-Tag"] = (
+        f"{socket.gethostname()} at {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}"
+    )
+    response.headers["X-Miztiik-Automation"] = "True"
+    response.headers["X-Brand-Tag"] = "Empowering Innovations & Equitable Growth"
+    return response
 
 
 # Remove the following code block:

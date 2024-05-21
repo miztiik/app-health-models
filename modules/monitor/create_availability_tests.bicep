@@ -40,9 +40,9 @@ resource r_standardWebTestPageHome 'Microsoft.Insights/webtests@2022-06-15' = {
       {
         Id: 'emea-au-syd-edge' // Austrailia East
       }
-      {
-        Id: 'apac-jp-kaw-edge' // Japan East
-      }
+      // {
+      //   Id: 'apac-jp-kaw-edge' // Japan East
+      // }
       // {
       //   Id: 'emea-nl-ams-azr' // West Europe
       // }
