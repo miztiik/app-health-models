@@ -38,6 +38,9 @@ FUNC_APP_NAME="${FUNC_APP_NAME//_/-}"
 
 APIM_NAME=${ENTERPRISE_NAME_SUFFIX}-store-front-${LOC_SHORT_CODE}-apim-${GLOBAL_UNIQUENESS}
 
+# Replace underscore with hyphens
+APIM_NAME="${APIM_NAME/_/-}"
+
 PRODUCER_FUNC_NAME="store_events_producer"
 CONSUMER_FUNC_NAME="store_events_consumer"
 
