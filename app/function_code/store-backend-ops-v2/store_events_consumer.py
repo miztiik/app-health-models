@@ -64,7 +64,10 @@ def process_q_msg(msg: func.ServiceBusMessage) -> str:
                 "user_properties": msg.user_properties,
                 "event_type": msg.user_properties.get("event_type"),
                 "processing_time": processing_time,
-            }
+            },
+            indent=4,
+            sort_keys=True,
+            default=str,
         )
 
         logging.info(f"{parsed_msg}")
@@ -82,12 +85,12 @@ def process_q_msg(msg: func.ServiceBusMessage) -> str:
 
         _a_resp["processing_time"] = processing_time
 
-        logging.info(f"{json.dumps(_a_resp)}")
+        logging.info(f"{json.dumps(_a_resp, indent=4, sort_keys=True, default=str)}")
 
     except Exception as e:
         logging.exception(f"ERROR:{str(e)}")
 
-    logging.info(json.dumps(_a_resp, indent=4))
+    logging.info(json.dumps(_a_resp, indent=4, sort_keys=True, default=str))
 
 
 if __name__ == "__main__":
