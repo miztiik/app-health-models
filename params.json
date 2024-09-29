@@ -6,16 +6,17 @@
       "value": {
         "backup_regions": [
           "switzerlandnorth",
+          "swedencentral",
           "northeurope",
           "eastus"
         ],
-        "version": "2024-05-10",
+        "version": "2024-09-29",
         "enable_diagnostics": true,
-        "location": "eastus",
-        "loc_short_code": "us",
-        "global_uniqueness": "002",
+        "location": "swedencentral",
+        "loc_short_code": "sw",
+        "global_uniqueness": "005",
         "enterprise_name": "Miztiik_Enterprises",
-        "enterprise_name_suffix": "app_model",
+        "enterprise_name_suffix": "ahm",
         "sub_deploymnet_prefix": "Miztiik_Verse"
       }
     },

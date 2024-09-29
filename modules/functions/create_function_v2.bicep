@@ -1,6 +1,6 @@
 // SET MODULE DATE
 param module_metadata object = {
-  module_last_updated: '2024-01-04'
+  module_last_updated: '2024-09-29'
   owner: 'miztiik@github'
 }
 
@@ -57,6 +57,7 @@ resource r_cosmos_db_accnt 'Microsoft.DocumentDB/databaseAccounts@2022-08-15' ex
 
 @description('List of built-in roles and their IDs')
 var built_in_roles = [
+  { name: 'Storage Blob Data Owner', id: 'b7e6dc6d-f1e8-4753-8033-0f276bb0955b' }
   { name: 'Storage Blob Data Contributor', id: 'ba92f5b4-2d11-453d-a403-e96b0029c9fe' }
   { name: 'Azure Service Bus Data Owner', id: '090c5cfd-751d-490a-894a-3ce6f1109419' }
   { name: 'Azure Event Hubs Data Owner', id: 'f526a384-b230-433a-b45c-95f59c4a2dec' }
@@ -154,7 +155,7 @@ resource r_fn_app 'Microsoft.Web/sites@2021-03-01' = {
   tags: tags
   identity: {
     // type: 'SystemAssigned'
-    type: 'UserAssigned'
+    type: 'SystemAssigned, UserAssigned'
     userAssignedIdentities: {
       '${r_uami_func.id}': {}
     }
